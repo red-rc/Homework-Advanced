@@ -19,7 +19,5 @@ namespace WindowsFormsApp2
             this.password = password;
         }
         public string getName() { return name; }
-        public string getEmail() { return email; }
-        public string getPassword() { return password; }
     }
 }

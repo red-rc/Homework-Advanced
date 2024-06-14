@@ -51,9 +51,9 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(40, 35);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 50);
+            this.label1.Size = new System.Drawing.Size(111, 50);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Блоги";
+            this.label1.Text = "Блог";
             // 
             // panel2
             // 
