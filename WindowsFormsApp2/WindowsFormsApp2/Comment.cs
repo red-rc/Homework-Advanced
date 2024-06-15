@@ -13,12 +13,12 @@ namespace WindowsFormsApp2
         public Panel panel;
         public static int increment = 0;
         private int id = 0;
-        private int PreviousCommentsCount;
+        private int CommentsCount;
         public int commentPanelY;
-        public Comment(User user, int PreviousCommentsCount, int rating, string text, Panel panel) 
+        public Comment(User user, int CommentsCount, int rating, string text, Panel panel) 
         {
             id = increment++;
-            this.PreviousCommentsCount = PreviousCommentsCount;
+            this.CommentsCount = CommentsCount;
             commentPanel = new Panel();
             userNameLabel = new Label();
             ratingLabel = new Label();
@@ -48,7 +48,7 @@ namespace WindowsFormsApp2
         public void createUI()
         {
             panel.Controls.Add(commentPanel);
-            commentPanel.Location = new Point(10, 800 + (id - PreviousCommentsCount) * 220);
+            commentPanel.Location = new Point(10, 800 + CommentsCount * 220);
             commentPanel.Size = new Size(panel.Width - 10, 200);
             commentPanel.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
             commentPanel.BackColor = Color.FromArgb(250, 250, 250);

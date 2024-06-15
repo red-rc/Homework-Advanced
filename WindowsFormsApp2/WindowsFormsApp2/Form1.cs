@@ -17,7 +17,7 @@ namespace WindowsFormsApp2
         public void createBlog()
         {
             Blog blog = new Blog("Новий блог", panel2);
-            blog.addArticle("Користувач", "Заголовок 1", "Текст");
+            blog.addArticle("Користувач 1", "Заголовок 1", "Текст");
             User user1 = new User("Користувач 1", "user1@gmail.com", "11111111");
             User user2 = new User("Користувач 2", "user2@gmail.com", "12345678");
             User user3 = new User("Користувач 2", "user3@gmail.com", "123456789");

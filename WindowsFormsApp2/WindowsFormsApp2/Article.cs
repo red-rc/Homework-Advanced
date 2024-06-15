@@ -24,13 +24,12 @@ namespace WindowsFormsApp2
         public Panel panel;
         public GroupBox commentFormPanel;
         public VScrollBar scrollBar;
-        public int PreviousCommentsCount;
         public List<Comment> comments;
         public Button button;
         public static int increment = 1;
         private int id = 0;
 
-        public Article(string userName, int PreviousCommentsCount, string caption, string text, Panel panel, Button button)
+        public Article(string userName, string caption, string text, Panel panel, Button button)
         {
             id = increment++;
             nameBox = new TextBox();
@@ -47,7 +46,6 @@ namespace WindowsFormsApp2
             commentTextBox = new TextBox();
             ratingTextBox = new TextBox();
             userNameLabel = new Label();
-            this.PreviousCommentsCount = PreviousCommentsCount;
             commentFormPanel = new GroupBox();
             scrollBar = new VScrollBar();
             submitButton = new Button();
@@ -70,7 +68,7 @@ namespace WindowsFormsApp2
         }
         public void addComment(User user, string text, int rating)
         {
-            comments.Add(new Comment(user, PreviousCommentsCount, rating, text, panel));
+            comments.Add(new Comment(user, comments.Count, rating, text, panel));
         }
         public void showArticle()
         {
@@ -119,16 +117,18 @@ namespace WindowsFormsApp2
             panel.Controls.Add(scrollBar);
 
             nameBox.Font = new Font("Microsoft Sans Serif", 12.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            nameBox.BackColor = Color.White;
             nameBox.BorderStyle = BorderStyle.None;
             nameBox.Location = new Point(panel.Width / 2 - 70, 10);
             nameBox.Size = new Size(200, 20);
+            nameBox.ReadOnly = true;
             nameBox.Anchor = AnchorStyles.Top;
             nameBox.TabIndex = 0;
 
             captionBox.Font = new Font("Microsoft Sans Serif", 24.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
             captionBox.BorderStyle = BorderStyle.None;
             captionBox.Location = new Point(panel.Width / 2 - 100, 50);
-            captionBox.Size = new Size(200, 50);
+            captionBox.Size = new Size(300, 50);
             captionBox.Anchor = AnchorStyles.Top;
             captionBox.TabIndex = 0;
 
@@ -234,14 +234,14 @@ namespace WindowsFormsApp2
 
             scrollBar.Scroll += (sender, e) =>
             {
-                nameBox.Location = new Point(nameBox.Location.X, NameBoxY - (scrollBar.Value * 10));
-                captionBox.Location = new Point(captionBox.Location.X, CaptionBoxY - (scrollBar.Value * 10));
-                textBox.Location = new Point(textBox.Location.X, TextBoxY - (scrollBar.Value * 10));
-                commentFormPanel.Location = new Point(commentFormPanel.Location.X, CommentFormPanelY - (scrollBar.Value * 10));
+                nameBox.Location = new Point(nameBox.Location.X, NameBoxY - (scrollBar.Value * comments.Count * 4));
+                captionBox.Location = new Point(captionBox.Location.X, CaptionBoxY - (scrollBar.Value * comments.Count * 4));
+                textBox.Location = new Point(textBox.Location.X, TextBoxY - (scrollBar.Value * comments.Count * 4));
+                commentFormPanel.Location = new Point(commentFormPanel.Location.X, CommentFormPanelY - (scrollBar.Value * comments.Count * 4));
 
                 foreach (Comment comment in comments)
                 {
-                    comment.scroll(scrollBar.Value * 10);
+                    comment.scroll(scrollBar.Value * comments.Count * 4);
                 }
             };
 

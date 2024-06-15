@@ -30,18 +30,9 @@ namespace WindowsFormsApp2
             createUI();
             back.Hide();
         }
-        public int getPreviousArticleCommentCount()
-        {
-            if (_articles.Count > 0)
-                return _articles[_articles.Count - 1].getCommentsCount();
-            else
-            {
-                return 0;
-            }
-        }
         public void addArticle(string userName, string caption, string text)
         {
-            _articles.Add(new Article(userName, getPreviousArticleCommentCount(), caption, text, panel, createArticleButton(panel, caption)));
+            _articles.Add(new Article(userName, caption, text, panel, createArticleButton(panel, caption)));
         }  
         public Article getArticleById(int id)
         {
